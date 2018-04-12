@@ -7,9 +7,7 @@ public class SandLab
   //add constants for particle types here
   public static final int EMPTY = 0;
   public static final int METAL = 1;
-  public static final int WATER = 2;
-  public static final int SAND = 3;
-  public static final int ACID = 4;
+  
   
   
   //do not add any more fields below
@@ -31,10 +29,10 @@ public class SandLab
     // Each value needs a name for the button
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
-    names[SAND] = "Sand";
+    
     
     //1. Add code to initialize the data member grid with same dimensions
-    int [] [] grid = new int[numRows][numCols];
+    grid = new int[numRows][numCols];
     		
     display = new SandDisplay("Falling Sand", numRows, numCols, names);
   }
@@ -43,7 +41,7 @@ public class SandLab
   private void locationClicked(int row, int col, int tool)
   {
     //2. Assign the values associated with the parameters to the grid
-   
+   grid[row][col] = tool;
   }
 
   //copies each element of grid into the display
@@ -51,7 +49,21 @@ public class SandLab
   {
       //Step 3
    //Hint - use a nested for loop
-    
+    for(int row = 0; row < grid.length; row++)
+    {
+    	for(int col = 0; col < grid[0].length; col++)
+    	{
+    		if(grid[row][col] == EMPTY)
+    		{
+    			display.setColor(row, col, Color.BLACK);
+    		}
+    		else if(grid[row][col] == METAL)
+    		{
+    			display.setColor(row, col, Color.DARK_GRAY);
+    		}
+    		
+    	}
+    }
   }
 
   //Step 5,7
@@ -63,8 +75,13 @@ public class SandLab
     //The scalar refers to how big the value could be
     //int someRandom = (int) (Math.random() * scalar)
     //remember that you need to watch for the edges of the array
+    int randRow = (int) (Math.random() * (grid.length));
+    int randCol = (int) (Math.random() * (grid[0].length));
     
-    
+//    if((randRow + 1 < grid.length) && grid[randRow][randCol] == SAND && grid[randRow + 1][randCol])
+//    		{
+//    	
+//    		}
   }
   
   //do not modify this method!
