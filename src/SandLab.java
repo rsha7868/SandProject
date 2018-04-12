@@ -7,6 +7,10 @@ public class SandLab
   //add constants for particle types here
   public static final int EMPTY = 0;
   public static final int METAL = 1;
+  public static final int WATER = 2;
+  public static final int SAND = 3;
+  public static final int ACID = 4;
+  
   
   //do not add any more fields below
   private int[][] grid;
@@ -27,10 +31,11 @@ public class SandLab
     // Each value needs a name for the button
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
+    names[SAND] = "Sand";
     
     //1. Add code to initialize the data member grid with same dimensions
-    
-    
+    int [] [] grid = new int[numRows][numCols];
+    		
     display = new SandDisplay("Falling Sand", numRows, numCols, names);
   }
   
