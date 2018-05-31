@@ -8,7 +8,7 @@ public class SandLab
   public static final int EMPTY = 0;
   public static final int METAL = 1;
   public static final int COAL = 2;
-  public static final int WOOD = 3;
+  public static final int WATER = 3;
   
   
   //do not add any more fields below
@@ -31,7 +31,7 @@ public class SandLab
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
     names[COAL] = "Coal";
-    names[WOOD] = "Wood";
+    names[WATER] = "Water";
     
     
     //1. Add code to initialize the data member grid with same dimensions
@@ -68,7 +68,7 @@ public class SandLab
     		{
     			display.setColor(row, col, Color.DARK_GRAY);
     		}
-    		else if(grid[row][col] == WOOD)
+    		else if(grid[row][col] == WATER)
     		{
     			display.setColor(row, col, Color.BLUE);
     		}
@@ -86,14 +86,81 @@ public class SandLab
     //The scalar refers to how big the value could be
     //int someRandom = (int) (Math.random() * scalar)
     //remember that you need to watch for the edges of the array
-    int randRow = (int) (Math.random() * (grid.length));
-    int randCol = (int) (Math.random() * (grid[0].length));
+    int randomRow = (int) (Math.random() * (grid.length));
+    int randomCol = (int) (Math.random() * (grid[0].length));
+//    if (grid[randomRow][randomCol] == WATER)
     
-//    if((randRow + 1 < grid.length) && grid[randRow][randCol] == SAND && grid[randRow + 1][randCol])
-//    		{
-//    	
-//    		}
-  }
+//	{
+//		int randomDirection = (int) (Math.random() * 3);
+//		
+//		if (randomDirection == 0 && randomCol + 1 != grid[0].length)	//Right
+//		{
+//			if (grid[randomRow][randomCol + 1] == EMPTY)
+//			{
+//				grid[randomRow][randomCol + 1] = WATER;
+//				grid[randomRow][randomCol] = EMPTY;
+//			}
+//
+//		}
+//		else if (randomDirection == 1 && randomCol - 1 != -1)	//Left
+//		{
+//			if (grid[randomRow][randomCol - 1] == EMPTY)
+//			{
+//				grid[randomRow][randomCol - 1 ] = WATER;
+//				grid[randomRow][randomCol] = EMPTY;
+//			}
+//
+//		}
+//		else if (randomDirection == 2 && randomRow != grid.length - 1)	//Down
+//		{
+//			if (grid[randomRow + 1][randomCol] == EMPTY)
+//			{
+//				grid[randomRow + 1][randomCol] = WATER;
+//				grid[randomRow][randomCol] = EMPTY;
+//			}
+//
+//		}
+//	}
+
+    if(grid[randomRow][randomCol] == WATER)
+    {
+    	int randomDirection = (int) (Math.random() * 3);
+    	
+    	if(randomDirection == 0 && randomCol + 1 != grid[0].length) //Right
+    	{
+    		if(grid[randomRow][randomCol + 1] == EMPTY)
+    		{
+    			grid[randomRow][randomCol + 1] = WATER;
+    			grid[randomRow][randomCol] = EMPTY;
+    		}
+
+    	}
+    	else if(randomDirection == 1 && randomCol - 1 != -1) //Left
+    	{
+    		if(grid[randomRow][randomCol - 1] == EMPTY)
+    		{
+    			grid[randomRow][randomCol - 1] = WATER;
+    			grid[randomRow][randomCol] = EMPTY;
+    		}
+    	}
+		else if(randomDirection == 2 && randomCol != grid.length + 1) //Up
+		{
+			if(grid[randomRow - 1][randomCol] == EMPTY)
+    		{
+    			grid[randomRow -1][randomCol] = WATER;
+    			grid[randomRow][randomCol] = EMPTY;
+    		}
+		}
+		else if(randomDirection == 2 && randomCol != grid.length - 1) //Down
+		{
+			if(grid[randomRow + 1][randomCol] == EMPTY)
+    		{
+    			grid[randomRow + 1][randomCol] = WATER;
+    			grid[randomRow][randomCol] = EMPTY;
+    		}
+		}
+    }
+}
   
   //do not modify this method!
   public void run()
