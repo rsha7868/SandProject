@@ -9,6 +9,8 @@ public class SandLab
   public static final int METAL = 1;
   public static final int COAL = 2;
   public static final int WATER = 3;
+  public static final int LAVA = 4;
+  public static final int STONE = 5;
   
   
   //do not add any more fields below
@@ -26,12 +28,13 @@ public class SandLab
     String[] names;
     // Change this value to add more buttons
     //Step 4,6
-    names = new String[4];
+    names = new String[5];
     // Each value needs a name for the button
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
     names[COAL] = "Coal";
     names[WATER] = "Water";
+    names[LAVA] = "Lava";
     
     
     //1. Add code to initialize the data member grid with same dimensions
@@ -72,6 +75,14 @@ public class SandLab
     		{
     			display.setColor(row, col, Color.BLUE);
     		}
+    		else if(grid[row][col] == LAVA)
+    		{
+    			display.setColor(row, col, new Color(234,92,15));
+    		}
+    		else if(grid[row][col] == STONE)
+    		{
+    			display.setColor(row, col, new Color(138,128,124));
+    		}
     		
     	}
     }
@@ -88,78 +99,116 @@ public class SandLab
     //remember that you need to watch for the edges of the array
     int randomRow = (int) (Math.random() * (grid.length));
     int randomCol = (int) (Math.random() * (grid[0].length));
-//    if (grid[randomRow][randomCol] == WATER)
+    if (grid[randomRow][randomCol] == WATER)
     
-//	{
-//		int randomDirection = (int) (Math.random() * 3);
-//		
-//		if (randomDirection == 0 && randomCol + 1 != grid[0].length)	//Right
-//		{
-//			if (grid[randomRow][randomCol + 1] == EMPTY)
-//			{
-//				grid[randomRow][randomCol + 1] = WATER;
-//				grid[randomRow][randomCol] = EMPTY;
-//			}
-//
-//		}
-//		else if (randomDirection == 1 && randomCol - 1 != -1)	//Left
-//		{
-//			if (grid[randomRow][randomCol - 1] == EMPTY)
-//			{
-//				grid[randomRow][randomCol - 1 ] = WATER;
-//				grid[randomRow][randomCol] = EMPTY;
-//			}
-//
-//		}
-//		else if (randomDirection == 2 && randomRow != grid.length - 1)	//Down
-//		{
-//			if (grid[randomRow + 1][randomCol] == EMPTY)
-//			{
-//				grid[randomRow + 1][randomCol] = WATER;
-//				grid[randomRow][randomCol] = EMPTY;
-//			}
-//
-//		}
-//	}
-
-    if(grid[randomRow][randomCol] == WATER)
-    {
-    	int randomDirection = (int) (Math.random() * 3);
-    	
-    	if(randomDirection == 0 && randomCol + 1 != grid[0].length) //Right
-    	{
-    		if(grid[randomRow][randomCol + 1] == EMPTY)
-    		{
-    			grid[randomRow][randomCol + 1] = WATER;
-    			grid[randomRow][randomCol] = EMPTY;
-    		}
-
-    	}
-    	else if(randomDirection == 1 && randomCol - 1 != -1) //Left
-    	{
-    		if(grid[randomRow][randomCol - 1] == EMPTY)
-    		{
-    			grid[randomRow][randomCol - 1] = WATER;
-    			grid[randomRow][randomCol] = EMPTY;
-    		}
-    	}
-		else if(randomDirection == 2 && randomCol != grid.length + 1) //Up
+	{
+		int randomDirection = (int) (Math.random() * 3);
+		
+		if (randomDirection == 0 && randomCol + 1 != grid[0].length)	//Right
 		{
-			if(grid[randomRow - 1][randomCol] == EMPTY)
-    		{
-    			grid[randomRow -1][randomCol] = WATER;
-    			grid[randomRow][randomCol] = EMPTY;
-    		}
+			if (grid[randomRow][randomCol + 1] == EMPTY)
+			{
+				grid[randomRow][randomCol + 1] = WATER;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			else if(grid[randomRow + 1][randomCol] == LAVA)
+			{
+				grid[randomRow][randomCol] = STONE;
+			}
+
 		}
-		else if(randomDirection == 2 && randomCol != grid.length - 1) //Down
+		else if (randomDirection == 1 && randomCol - 1 != -1)	//Left
 		{
-			if(grid[randomRow + 1][randomCol] == EMPTY)
-    		{
-    			grid[randomRow + 1][randomCol] = WATER;
-    			grid[randomRow][randomCol] = EMPTY;
-    		}
+			if (grid[randomRow][randomCol - 1] == EMPTY)
+			{
+				grid[randomRow][randomCol - 1 ] = WATER;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			else if(grid[randomRow + 1][randomCol] == LAVA)
+			{
+				grid[randomRow][randomCol] = STONE;
+			}
+
+		}
+		else if (randomDirection == 2 && randomRow != grid.length - 1)	//Down
+		{
+			if (grid[randomRow + 1][randomCol] == EMPTY)
+			{
+				grid[randomRow + 1][randomCol] = WATER;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			else if(grid[randomRow + 1][randomCol] == LAVA)
+			{
+				grid[randomRow][randomCol] = STONE;
+			}
+
 		}
     }
+    if (grid[randomRow][randomCol] == LAVA)
+        
+	{
+		int randomDirection = (int) (Math.random() * 3);
+		
+		if (randomDirection == 0 && randomCol + 1 != grid[0].length)	//Right
+		{
+			if (grid[randomRow][randomCol + 1] == EMPTY)
+			{
+				grid[randomRow][randomCol + 1] = LAVA;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			
+			
+
+		}
+		else if (randomDirection == 1 && randomCol - 1 != -1)	//Left
+		{
+			if (grid[randomRow][randomCol - 1] == EMPTY)
+			{
+				grid[randomRow][randomCol - 1 ] = LAVA;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			
+
+		}
+		else if (randomDirection == 2 && randomRow != grid.length - 1)	//Down
+		{
+			if (grid[randomRow + 1][randomCol] == EMPTY)
+			{
+				grid[randomRow + 1][randomCol] = LAVA;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			else if (grid[randomRow + 1][randomCol] == WATER)
+			{
+				grid[randomRow + 1][randomCol] = LAVA;
+				grid[randomRow][randomCol] = WATER;
+			}
+
+			
+			
+
+		}
+    }
+    if (grid[randomRow][randomCol] == STONE)
+        
+	{
+		int randomDirection = (int) (Math.random() * 3);
+		
+		if (randomDirection == 2 && randomRow != grid.length - 1)	//Down
+		{
+			if (grid[randomRow + 1][randomCol] == EMPTY)
+			{
+				grid[randomRow + 1][randomCol] = STONE;
+				grid[randomRow][randomCol] = EMPTY;
+			}
+			else if(grid[randomRow + 1][randomCol] == LAVA)
+			{
+				grid[randomRow + 1][randomCol] = STONE;
+				grid[randomRow][randomCol] = LAVA;
+			}
+			
+		}
+	}
+		
 }
   
   //do not modify this method!
