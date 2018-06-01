@@ -111,7 +111,7 @@ public class SandLab
 				grid[randomRow][randomCol + 1] = WATER;
 				grid[randomRow][randomCol] = EMPTY;
 			}
-			else if(grid[randomRow + 1][randomCol] == LAVA)
+			else if(grid[randomRow][randomCol + 1] == LAVA)
 			{
 				grid[randomRow][randomCol] = STONE;
 			}
@@ -124,7 +124,7 @@ public class SandLab
 				grid[randomRow][randomCol - 1 ] = WATER;
 				grid[randomRow][randomCol] = EMPTY;
 			}
-			else if(grid[randomRow + 1][randomCol] == LAVA)
+			else if(grid[randomRow][randomCol - 1] == LAVA)
 			{
 				grid[randomRow][randomCol] = STONE;
 			}
@@ -204,6 +204,11 @@ public class SandLab
 			{
 				grid[randomRow + 1][randomCol] = STONE;
 				grid[randomRow][randomCol] = LAVA;
+			}
+			else if(grid[randomRow + 1][randomCol] == WATER)
+			{
+				grid[randomRow + 1][randomCol] = STONE;
+				grid[randomRow][randomCol] = WATER;
 			}
 			
 		}
